@@ -4,19 +4,21 @@ server:
 spring:
   cloud:
     gateway:
-      default-filters:
-        - TokenRelay
-      routes:
-        - id: patient-service
-          uri: lb://MEDICORE-PATIENTS
-          predicates:
-            - Path=/api/v1/patients/**
+      server:
+        webflux:
+        default-filters:
+          - TokenRelay
+        routes:
+         - id: patient-service
+           uri: lb://MEDICORE-PATIENTS
+           predicates:
+              - Path=/api/v1/patients/**
 
-        - id: auth-service-keycloak
-          uri: ${AUTH_SERVICE_URI:http://localhost:8081}
-          predicates:
+         - id: auth-service-keycloak
+           uri: ${AUTH_SERVICE_URI:http://localhost:8081}
+           predicates:
               - Path=/api/v1/auth/**
-          filters:
+           filters:
             - RewritePath=/api/v1/auth/?(?<segment>.*), /realms/medicore-realm/protocol/openid-connect/$\{segment}
   security:
     oauth2:

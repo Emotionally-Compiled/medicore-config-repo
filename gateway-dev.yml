@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    gateway:
+      default-filters:
+        - TokenRelay
+      routes:
+        - id: patient-service
+          uri: lb://MEDICORE-PATIENTS
+          predicates:
+            - Path=/api/patients/**
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI}

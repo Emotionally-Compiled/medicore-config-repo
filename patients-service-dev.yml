@@ -1,0 +1,16 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: ${PATIENTS_DATABASE:jdbc:postgresql://localhost:5432/patients_db}
+    username: ${POSTGRES_PATIENTS_USER:admin}
+    password: ${POSTGRES_PATIENTS_PASSWORD:admin123}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true

@@ -19,7 +19,9 @@ spring:
           uri: lb://PATIENTS-SERVICE
           predicates:
             - Path=/api/v1/patients/**
-
+          filters:
+            - RewritePath=/api/v1/patients/?(?<segment>.*), /$\{segment}
+          
         - id: auth-service-keycloak
           uri: ${AUTH_SERVICE_URI:http://localhost:8081}
           predicates:

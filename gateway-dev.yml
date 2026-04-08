@@ -7,8 +7,8 @@ spring:
       default-filters:
         - TokenRelay
       routes:
-        - id: patient-service
-          uri: lb://MEDICORE-PATIENTS
+        - id: patients-service
+          uri: lb://PATIENTS-SERVICE
           predicates:
             - Path=/api/v1/patients/**
 

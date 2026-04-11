@@ -14,3 +14,19 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          medicore:
+            client-id: ${KEYCLOAK_CLIENT_ID:medicore-microservices}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET}
+            scope: openid,profile,email
+            authorization-grant-type: authorization_code
+        provider:
+          medicore:
+            issuer-uri: ${KEYCLOAK_ISSUER_URI:http=//localhost:8081/realms/medicore-realm}
+            user-name-attribute: preferred_username
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http=//localhost:8081/realms/medicore-realm}

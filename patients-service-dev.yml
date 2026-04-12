@@ -5,6 +5,8 @@ kc:
   server-url: ${KEYCLOAK_ISSUER_URI}
   kc-user: ${KC_ADMIN_USER}
   kc-pass: ${KC_ADMIN_PASSWORD}
+  client-id: "medicore-microservices"
+  client-secret: ${KEYCLOAK_CLIENT_SECRET}
   realm: "medicore-realm"
 
 spring:

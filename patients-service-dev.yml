@@ -2,7 +2,7 @@ server:
   port: 8089
 
 kc:
-  server-url: ${KEYCLOAK_ISSUER_URI}
+  server-url: ${KEYCLOAK_SERVER_URL}
   kc-user: ${KC_ADMIN_USER}
   kc-pass: ${KC_ADMIN_PASSWORD}
   client-id: "medicore-microservices"

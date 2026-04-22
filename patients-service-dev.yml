@@ -33,8 +33,8 @@ spring:
             authorization-grant-type: authorization_code
         provider:
           medicore:
-            issuer-uri: ${KEYCLOAK_ISSUER_URI:http=//localhost:8081/realms/medicore-realm}
+            issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8081/realms/medicore-realm}
             user-name-attribute: preferred_username
       resourceserver:
         jwt:
-          issuer-uri: ${KEYCLOAK_ISSUER_URI:http=//localhost:8081/realms/medicore-realm}
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8081/realms/medicore-realm}

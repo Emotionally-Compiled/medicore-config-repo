@@ -10,3 +10,8 @@ management:
   endpoint:
     health:
       show-details: always
+
+spring:
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true

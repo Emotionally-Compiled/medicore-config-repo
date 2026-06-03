@@ -1,0 +1,45 @@
+server:
+  port: 8082
+
+kc:
+  server-url: ${KEYCLOAK_SERVER_URL}
+  kc-user: ${KC_ADMIN_USER}
+  kc-pass: ${KC_ADMIN_PASSWORD}
+  client-id: "medicore-microservices"
+  client-secret: ${KEYCLOAK_CLIENT_SECRET}
+  realm: "medicore-realm"
+  
+jwt:
+  auth:  
+    converter:
+      principle-attribute: preferred_username
+spring:
+  datasource:
+    url: ${DOCTORS_DATABASE:jdbc:postgresql://localhost:5435/doctors_db}
+    username: ${POSTGRES_DOCTORS_USER:admin}
+    password: ${POSTGRES_DOCTORS_PASSWORD:admin123}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+security:
+    oauth2:
+      client:
+        registration:
+          medicore:
+            client-id: ${KEYCLOAK_CLIENT_ID:medicore-microservices}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET}
+            scope: openid,profile,email
+            authorization-grant-type: authorization_code
+        provider:
+          medicore:
+            issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8081/realms/medicore-realm}
+            user-name-attribute: preferred_username
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8081/realms/medicore-realm}
